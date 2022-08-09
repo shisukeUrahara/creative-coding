@@ -9,6 +9,7 @@ function Cell(i,j){
     //  3-> left
 
     this.walls=[true,true,true,true]
+    this.visited=false;
 
 
     //  function
@@ -28,7 +29,46 @@ this.show= ()=>{
         line(x,y+w,x,y)
     }
 
-    // noFill()
-    // rect(x,y,w,w);
+   if(this.visited){
+    fill(255,0,255,100)
+    rect(x,y,w,w);
+   }
+}
+
+this.index=(i,j)=>{
+
+    if(i<0 || j<0 || i>cols-1 || j>rows-1){
+        return -1;
+    }
+    return i+(j*cols);
+}
+
+this.checkNeighbours=()=>{
+    let neighbours=[];
+
+    let topNeighbour= grid[this.index(i,j-1)]
+    let rightNeighbour= grid[this.index(i+1,j)]
+    let bottomNeighbour= grid[this.index(i,j+1)]
+    let leftNeighbour= grid[this.index(i-1,j)];
+
+    if(topNeighbour && !topNeighbour.visited){
+        neighbours.push(topNeighbour);
+    }if(rightNeighbour && !rightNeighbour.visited){
+        neighbours.push(rightNeighbour);
+    }if(bottomNeighbour && !bottomNeighbour.visited){
+        neighbours.push(bottomNeighbour);
+    }if(leftNeighbour && !leftNeighbour.visited){
+        neighbours.push(leftNeighbour);
+    }
+
+    //  choose a random unvisited neighbur if any , else return undefined
+    if(neighbours.length>0){
+        let r= floor(random(0,neighbours.length));
+        return neighbours[r]
+    }
+    else {
+        return undefined;
+    }
+
 }
 }
