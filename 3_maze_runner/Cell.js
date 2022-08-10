@@ -1,5 +1,4 @@
 function Cell(i,j){
-
     //  state variables
     this.i=i;
     this.j=j;
@@ -7,10 +6,8 @@ function Cell(i,j){
     //  1-> right
     //  2-> bottom
     //  3-> left
-
     this.walls=[true,true,true,true]
     this.visited=false;
-
 
     //  function
 this.show= ()=>{
@@ -30,6 +27,7 @@ this.show= ()=>{
     }
 
    if(this.visited){
+    noStroke()
     fill(255,0,255,100)
     rect(x,y,w,w);
    }
@@ -71,4 +69,14 @@ this.checkNeighbours=()=>{
     }
 
 }
+
+this.highlight=()=>{
+    let x=this.i*w;
+    let y=this.j*w;
+
+    noStroke()
+    fill(0,0,255,100);
+    rect(x,y,w,w)
+}
+
 }
