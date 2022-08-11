@@ -33,7 +33,6 @@ function draw() {
     nextCell.visited=true;
   //   STEP 3-> remove common wall between current and next cell
   removeWalls(currentCell,nextCell)
-
     currentCell=nextCell
   }
 

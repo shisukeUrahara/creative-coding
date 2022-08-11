@@ -34,7 +34,6 @@ this.show= ()=>{
 }
 
 this.index=(i,j)=>{
-
     if(i<0 || j<0 || i>cols-1 || j>rows-1){
         return -1;
     }
@@ -67,13 +66,11 @@ this.checkNeighbours=()=>{
     else {
         return undefined;
     }
-
 }
 
 this.highlight=()=>{
     let x=this.i*w;
     let y=this.j*w;
-
     noStroke()
     fill(0,0,255,100);
     rect(x,y,w,w)
