@@ -1,7 +1,9 @@
 let rows,cols;
-let w=40;
+let w=10;
 let grid=[];
 let currentCell;
+let stack=[];
+
 function setup() {
   createCanvas(400, 400);
   rows= floor(width/w);
@@ -17,7 +19,7 @@ function setup() {
 
 function draw() {
   background(51);
-  frameRate(5)
+  // frameRate(5)
 
   for(let i=0;i<grid.length;i++){
     grid[i].show();
@@ -31,9 +33,13 @@ function draw() {
   if(nextCell){
     //  STEP2-> Mark cell as visited
     nextCell.visited=true;
+    stack.push(currentCell);
   //   STEP 3-> remove common wall between current and next cell
   removeWalls(currentCell,nextCell)
     currentCell=nextCell
+  }
+  else if(stack.length>0) {
+    currentCell=stack.pop();
   }
 
 
